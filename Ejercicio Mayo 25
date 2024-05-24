@@ -1,0 +1,119 @@
+/* EJERCICIO 1
+Escribe una función que reciba un número como argumento y lo convierta a
+una cadena de texto. Maneja el caso en el que el argumento no sea un número
+válido.*/
+
+function convertirACadena(numero) {
+    if (isNaN(numero)) {
+        return "El argumento no es un número válido"
+    } else {
+        return numero.toString()
+    }
+}
+
+console.log(convertirACadena(123))
+console.log(convertirACadena(111))
+console.log(convertirACadena("Hola"))
+
+
+
+/*EJERCICIO 2
+Escribe una función que devuelva el elemento en una posición específica de un
+arreglo. Maneja el caso en el que el índice proporcionado esté fuera del rango
+del arreglo.*/
+
+function obtenerElementoEnPosicion(arreglo, indice) {
+    if (indice < 0 || indice >= arreglo.length) {
+        return "El índice está fuera del rango del arreglo"
+    } else {
+        return arreglo[indice]
+    }
+}
+const miArreglo = [1, 2, 3, 4, 5]
+console.log(obtenerElementoEnPosicion(miArreglo, 2))
+console.log(obtenerElementoEnPosicion(miArreglo, 7))
+
+
+/*EJERCICIO 3
+Escribe una función que reciba un número como argumento y lo convierta a
+una cadena de texto. Maneja el caso en el que el argumento no sea un número
+válido.*/
+
+function convertirNumeroACadena(numero) {
+    if (typeof numero !== 'number' || isNaN(numero)) {
+        return "El argumento no es un número válido"
+    } else {
+        return numero.toString()
+    }
+}
+console.log(convertirNumeroACadena(123))
+console.log(convertirNumeroACadena("Hola"))
+
+
+/*EJERCICIO 4
+Escribe una función que calcule el área de un triángulo dado su base y altura.
+Maneja el caso en el que alguno de los argumentos sea negativo.*/
+
+function calcularAreaTriangulo(base, altura) {
+    if (base <= 0 || altura <= 0) {
+        return "Los valores de base y altura deben ser positivos"
+    } else {
+        return (base * altura) / 2
+    }
+}
+console.log(calcularAreaTriangulo(5, 4))
+
+/*EJERCICIO 5
+Escribe una función que abra un archivo, realice alguna operación y luego cierre
+el archivo en el bloque finally, asegurándote de que el archivo siempre se cierre
+correctamente, incluso si ocurre un error durante la operación.*/
+
+function leerArchivo() {
+    let archivo;
+    try {
+        archivo = abrirArchivo("miArchivo.txt");
+        console.log(`Leyendo el archivo: ${archivo.nombre}`);
+        
+        return "Operación de lectura completada";
+    } catch (error) {
+        console.error("Error:", error);
+        return "Ocurrió un error durante la operación de lectura";
+    } finally {
+        // Simular cerrar el archivo en el bloque finally para asegurarse de que siempre se cierre correctamente
+        if (archivo) {
+         cerrarArchivo(archivo);
+         console.log("Archivo cerrado correctamente");
+        }
+    }
+}
+function abrirArchivo(nombre) {
+    console.log(`Abriendo archivo: ${nombre}`);
+    return { nombre: nombre }; // Simulación de objeto de archivo
+}
+
+function cerrarArchivo(archivo) {
+    console.log(`Cerrando archivo: ${archivo.nombre}`);
+}
+console.log(leerArchivo())
+
+/* EJERCICIO 6
+Escribe una función que realice una operación matemática compleja y maneje
+cualquier error que pueda ocurrir durante la operación. Después, llama a esta
+función desde otra función y maneja cualquier error que pueda propagarse
+desde la función original.*/
+
+function operacionCompleja(x: number, y: number): number {
+    if (y === 0) {
+        throw new Error("No se puede dividir por cero")
+    }
+    return (x * x + y) / y
+}
+function ejecutarOperacion(x: number, y: number): void {
+    try {
+        const resultado = operacionCompleja(x, y)
+        console.log("Resultado de la operación:", resultado)
+    } catch (error) {
+        console.error("Error durante la operación:", error.message)
+    }
+}
+ejecutarOperacion(2, 3)
