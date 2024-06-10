@@ -102,18 +102,3 @@ cualquier error que pueda ocurrir durante la operación. Después, llama a esta
 función desde otra función y maneja cualquier error que pueda propagarse
 desde la función original.*/
 
-function operacionCompleja(x: number, y: number): number {
-    if (y === 0) {
-        throw new Error("No se puede dividir por cero")
-    }
-    return (x * x + y) / y
-}
-function ejecutarOperacion(x: number, y: number): void {
-    try {
-        const resultado = operacionCompleja(x, y)
-        console.log("Resultado de la operación:", resultado)
-    } catch (error) {
-        console.error("Error durante la operación:", error.message)
-    }
-}
-ejecutarOperacion(2, 3)
